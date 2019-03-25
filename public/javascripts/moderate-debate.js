@@ -51,14 +51,15 @@ var onVote = (voteA, voteB, voteC, time, duration) => {
 	aVote = parseFloat(voteA);
 	bVote = parseFloat(voteB);
 	cVote = parseFloat(voteC);
-	total = duration;
+	total = aVote + bVote + cVote + 0.001;
 };
 
 var scaleBars = (bar, votes) => {
 	var curScale = bar.getAttribute('scale');
 	var curPos = bar.getAttribute('position');
-	var mag = Math.sqrt(votes * votes + total * total);
-	var targetY = (Math.sqrt(votes * votes) / mag) * scalar * easing;
+	// curScale.y = votes/total * 2;
+	// curPos.y = votes/total;
+	var targetY = (votes / total) * scalar * easing;
 	if (isNaN(curScale.y)) curScale.y = 0.01;
 	curScale.y = (curScale.y + targetY) * easing;
 	curPos.y = curScale.y * 0.5 + 0.01;

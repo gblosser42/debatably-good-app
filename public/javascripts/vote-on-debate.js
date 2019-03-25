@@ -149,18 +149,18 @@ $(function() {
 
 		var resultMarkup;
 		if (totals['A'] > totals['B']) {
-			resultMarkup = drawRow(oA.label, oA.total, true)+drawRow(oB.label, oB.total, false)
+			resultMarkup = drawRow(oA.label, totals['A'], true)+drawRow(oB.label, totals['B'], false)
 		} else if (totals['A'] < totals['B']) {
-			resultMarkup = drawRow(oB.label, oB.total, true)+drawRow(oA.label, oA.total, false)
+			resultMarkup = drawRow(oB.label, totals['B'], true)+drawRow(oA.label, totals['A'], false)
 		} else {
-			resultMarkup = drawRow(oA.label, oA.total, false)+drawRow(oB.label, oB.total, false)
+			resultMarkup = drawRow(oA.label, totals['A'], false)+drawRow(oB.label, totals['B'], false)
 		}
 
 		return '<table style="width:100%;font-size:1.5em;">'+
 			resultMarkup+
 			'<tr>'+
 				'<td style="border-bottom:0;">'+oC.label+'</td>'+
-				'<td style="text-align:right;border-bottom:0;">'+Math.round((oC.total/grandTotal)*100)+'%</td>'+
+				'<td style="text-align:right;border-bottom:0;">'+Math.round((1-(totals['A']+totals['B']))*100)+'%</td>'+
 			'</tr>'+
 		'<table>'+
 		'<br><br><br>'+

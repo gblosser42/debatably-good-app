@@ -78,10 +78,13 @@ function Debate (sessionCode, topic, nameA, nameB, duration, moderatorId) {
 			totals[participantB.name] = 0;
 			totals[undecided.name] = 0;
 
-			votes.forEach((vote, i, arr) => {
-				const endTime = typeof arr[i+1] !== 'undefined' ? arr[i+1].time : Date.now();
-				totals[vote.opinion] += endTime - vote.time;
-			});
+			// votes.forEach((vote, i, arr) => {
+			// 	const endTime = typeof arr[i+1] !== 'undefined' ? arr[i+1].time : Date.now();
+			// 	totals[vote.opinion] += endTime - vote.time;
+			// });
+			if (votes.length > 0) {
+				totals[votes[votes.length-1].opinion] += 1;
+			}
 
 			return totals;
 		};
